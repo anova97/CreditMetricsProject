@@ -1,0 +1,4 @@
+"0","zmiany<-data.frame(""Kanada""=kanada$`Zmiana%`, ""UK""=UK$`Zmiana%`, ""Turcja""=turcja$`Zmiana%`, ""Filipiny""=filipiny$`Zmiana%`)"
+"0","#macierz korelacji"
+"0","korelacje<-cor(zmiany)"
+"0","ggcorrplot(korelacje, lab = T, type = ""lower"")"

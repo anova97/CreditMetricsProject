@@ -1,0 +1,319 @@
+library(readr)
+library(readxl)
+library(BDgraph)
+
+
+#rating AAA
+kanada <- read_csv("~/Desktop/projekt2/Kanada3lata.csv", col_types = cols(Max. = col_number(), 
+                    Min. = col_number(), Ostatnio = col_number(), 
+                    Otwarcie = col_number(), `Zmiana%` = col_number()))
+
+kanada$Ostatnio=kanada$Ostatnio/100
+kanada$Otwarcie=kanada$Otwarcie/100
+kanada$Max.=kanada$Max./100
+kanada$Min.=kanada$Min./100
+kanada$`Zmiana%`=kanada$`Zmiana%`/100
+
+ymd(kanada$Data)
+replace("Kwi. '", kanada$Data, "04.")
+ggplot(kanada, aes(x=data, y=Ostatnio, col=`Zmiana%`))+geom_line()
+
+mies<-rep(c("04-", "03-", "02-", "01-", "12-", "11-", "10-", "09-", "08-", "07-", "06-", "05-"),7)
+rok<-rep("2019",4)
+rok<-c(rok,rep("2018", 12),rep("2017", 12),rep("2016", 12),rep("2015", 12),rep("2014", 12),rep("2013", 12),rep("2012", 12))
+as.Date(kanada$data)
+rok<-rok[1:83]
+mies<-mies[1:83]
+kanada$Rok<-rok
+kanada$Mies<-mies
+kanada$data<- paste0(kanada$Mies,kanada$Rok)
+kanada$data<-as.yearmon(kanada$data, "%m-%Y")
+
+apply(kanada, data, parse_date_time(orders = "my"))
+
+as.yearmon(kanada$data, "%m-%Y")
+as.yearmon("03_1993","%m_%Y") 
+
+as.Date("04/2018", format = "%m/%Y")
+
+read.zoo(text = kanada$data, FUN = as.yearmon)
+#rating B+
+turcja <- read_csv("~/Desktop/projekt2/Turcja3lata.csv", col_types = cols(Ostatnio = col_number(), 
+                         `Zmiana%` = col_number()))
+
+turcja$Ostatnio=turcja$Ostatnio/1000
+turcja$Otwarcie=turcja$Otwarcie/1000
+turcja$Max.=turcja$Max./1000
+turcja$Min.=turcja$Min./1000
+turcja$`Zmiana%`=turcja$`Zmiana%`/100
+
+#rating AA+
+UK <- read_csv("~/Desktop/projekt2/UK3lata.csv", col_types = cols(Max. = col_number(), 
+                  Min. = col_number(), Ostatnio = col_number(), 
+                  Otwarcie = col_number(), `Zmiana%` = col_number()))
+UK=UK[order(nrow(UK):1),]
+
+UK$Ostatnio=UK$Ostatnio/100
+UK$Otwarcie=UK$Otwarcie/100
+UK$Max.=UK$Max./100
+UK$Min.=UK$Min./100
+UK$`Zmiana%`=UK$`Zmiana%`/100
+
+#rating BBB
+filipiny <- read_csv("~/Desktop/projekt2/Filipiny3lata.csv", col_types = cols(Max. = col_number(), 
+                    Min. = col_number(), Ostatnio = col_number(), 
+                    Otwarcie = col_number(), `Zmiana%` = col_number()))
+
+filipiny$Ostatnio=filipiny$Ostatnio/100
+filipiny$Otwarcie=filipiny$Otwarcie/100
+filipiny$Max.=filipiny$Max./100
+filipiny$Min.=filipiny$Min./100
+filipiny$`Zmiana%`=filipiny$`Zmiana%`/100
+
+zmiany<-data.frame("Kanada"=kanada$`Zmiana%`, "UK"=UK$`Zmiana%`, "Turcja"=turcja$`Zmiana%`, "Filipiny"=filipiny$`Zmiana%`)
+
+#macierz korelacji
+korelacje<-cor(zmiany)
+
+set.seed(100)
+mc<-rmvnorm(10000, sigma=korelacje)
+mc<-as.data.frame(mc)
+
+macierzZmian <- read_excel("~/Desktop/projekt2/Kopia macierz_zmian_ratingu.xlsx", 
+                           sheet = "Arkusz3")
+
+macierzZmian<-as.data.frame(macierzZmian)
+rownames(macierzZmian)<-macierzZmian$X__1
+
+macierzZmian<-macierzZmian[,(2:9)]
+
+macierzKanada<-matrix(data=0, nrow = 4, ncol=6)
+macierzKanada[1,]<-c(0.085,0.0106, 0.0028, 0.0022, 0.001, 0)
+macierzKanada[2,]<-c(1, 0.085, 0.0106, 0.0028, 0.0022, 0.001)
+
+for (i in 1:6){
+  macierzKanada[3,i]=quantile(mc$Kanada,macierzKanada[1,i])
+  macierzKanada[4,i]=quantile(mc$Kanada, macierzKanada[2,i])
+  }
+
+colnames(macierzKanada)<-(c("AAA", "AA", "A", "BBB", "BB", "B"))
+
+row.names(macierzKanada)<-c("Kwantyl od", "Kwantyl do", "Wartosc od", "Wartosc do")
+
+macierzUK<-matrix(data=0, nrow = 4, ncol=8)
+macierzUK[1,]<-c(0.993,0.0915, 0.0236, 0.0153, 0.0047, 0.0003, 0.0001, 0)
+macierzUK[2,]<-c(1, 0.993,0.0915, 0.0236, 0.0153, 0.0047, 0.0003, 0.0001)
+
+for (i in 1:8){
+  macierzUK[3,i]=quantile(mc$UK,macierzUK[1,i])
+  macierzUK[4,i]=quantile(mc$UK, macierzUK[2,i])
+}
+
+colnames(macierzUK)<-(c("AAA", "AA", "A", "BBB", "BB", "B", "CCC", "D"))
+
+macierzTurcja<-matrix(data=0, nrow = 4, ncol=7)
+macierzTurcja[1,]<-c(0.9991,0.997, 0.9921, 0.924, 0.0883, 0.0003, 0)
+macierzTurcja[2,]<-c(1, 0.9991,0.997, 0.9921, 0.924, 0.0883, 0.0003)
+
+for (i in 1:7){
+  macierzTurcja[3,i]=quantile(mc$Turcja,macierzTurcja[1,i])
+  macierzTurcja[4,i]=quantile(mc$Turcja, macierzTurcja[2,i])
+}
+
+colnames(macierzTurcja)<-(c("AA", "A", "BBB", "BB", "B", "CCC", "D"))
+
+
+macierzFilipiny<-matrix(data=0, nrow = 4, ncol=8)
+macierzFilipiny[1,]<-c(0.9995,0.9952, 0.9338, 0.0645, 0.0149, 0.003, 0.0018, 0)
+macierzFilipiny[2,]<-c(1, 0.9995,0.9952, 0.9338, 0.0645, 0.0149, 0.003, 0.0018)
+
+for (i in 1:8){
+  macierzFilipiny[3,i]=quantile(mc$Filipiny,macierzFilipiny[1,i])
+  macierzFilipiny[4,i]=quantile(mc$Filipiny, macierzFilipiny[2,i])
+}
+
+colnames(macierzFilipiny)<-(c("AAA", "AA", "A", "BBB", "BB", "B", "CCC", "D"))
+
+
+porzadkuj<-function(macierzKraju, mcarl)
+{
+  if(colnames(macierzKraju)[1]=="AAA")
+  {
+    aaa<-which((mcarl>(macierzKraju[3,1])))
+    aa<-which((mcarl<(macierzKraju[4,2]))&mcarl>(macierzKraju[3,2]))
+    a<-which((mcarl<(macierzKraju[4,3]))&mcarl>(macierzKraju[3,3]))
+    bbb<-which((mcarl<(macierzKraju[4,4]))&mcarl>(macierzKraju[3,4]))
+    bb<-which((mcarl<(macierzKraju[4,5]))&mcarl>(macierzKraju[3,5]))
+    b<-which((mcarl<(macierzKraju[4,6]))&mcarl>=(macierzKraju[3,6]))
+    
+    if(ncol(macierzKraju)>6)
+      {
+        ccc<-which((mcarl<(macierzKraju[4,7]))&mcarl>=(macierzKraju[3,7]))
+        d<-which((mcarl<(macierzKraju[4,8]))&mcarl>=(macierzKraju[3,8]))
+        mcarl[ccc]="CCC"
+        mcarl[d]="D"
+      }
+    mcarl[aaa]="AAA"
+    mcarl[aa]="AA"
+    mcarl[a]="A"
+    mcarl[bbb]="BBB"
+    mcarl[bb]="BB"
+    mcarl[b]="B"
+  
+  }
+  else
+  {
+    aaa=0
+    aa<-which((mcarl>(macierzKraju[3,1])))
+    a<-which((mcarl<(macierzKraju[4,2]))&mcarl>(macierzKraju[3,2]))
+    bbb<-which((mcarl<(macierzKraju[4,3]))&mcarl>(macierzKraju[3,3]))
+    bb<-which((mcarl<(macierzKraju[4,4]))&mcarl>(macierzKraju[3,4]))
+    b<-which((mcarl<(macierzKraju[4,5]))&mcarl>(macierzKraju[3,5]))
+    ccc<-which((mcarl<(macierzKraju[4,6]))&mcarl>(macierzKraju[3,6]))
+    d<-which((mcarl<(macierzKraju[4,7]))&mcarl>=(macierzKraju[3,7]))
+  
+  
+    mcarl[aaa]="AAA"
+    mcarl[aa]="AA"
+    mcarl[a]="A"
+    mcarl[bbb]="BBB"
+    mcarl[bb]="BB"
+    mcarl[b]="B"
+    mcarl[ccc]="CCC"
+    mcarl[d]="D"
+  }
+
+
+  return(mcarl)
+
+}
+
+
+
+mc$Kanada<-porzadkuj(macierzKanada, mc$Kanada)
+mc$UK<-porzadkuj(macierzUK, mc$UK)
+mc$Turcja<-porzadkuj(macierzTurcja, mc$Turcja)
+mc$Filipiny<-porzadkuj(macierzFilipiny, mc$Filipiny)
+
+
+vec_Kan<-c()
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="AAA"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="AA"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="A"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="BBB"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="BB"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="B"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="CCC"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="D"))
+
+
+vec_UK<-c()
+vec_UK<-c(vec_UK, sum((mc$UK)=="AAA"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="AA"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="A"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="BBB"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="BB"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="B"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="CCC"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="D"))
+
+vec_Tur<-c()
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="AAA"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="AA"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="A"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="BBB"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="BB"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="B"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="CCC"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="D"))
+
+vec_Fil<-c()
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="AAA"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="AA"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="A"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="BBB"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="BB"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="B"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="CCC"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="D"))
+
+wyniki<-data.frame("Kanada"=vec_Kan, "UK"=vec_UK, "Filipiny"= vec_Fil, "Turcja"=vec_Tur)
+rownames(wyniki)<-c("AAA", "AA", "A", "BBB", "BB", "B", "CCC", "D")
+
+wyniki2<-data.frame("wartosc"=c(vec_Kan, vec_UK, vec_Fil, vec_Tur), "Kraj"= c(rep("Kanada",8), rep("UK",8), rep("Filipiny",8), rep("Turcja",8)), "rating"=rep(c("AAA", "AA", "A", "BBB", "BB", "B", "CCC", "D"), 4))
+
+ggplot(wyniki2, aes(x = rating, y = wartosc, fill = Kraj)) + 
+  geom_col()
+
+ggplot(wyniki2, aes(x=rating, y=wartosc, col=Kraj))+geom_col()
+
+bp<- ggplot(wyniki2, aes(x="", y=Kanada, fill=))+
+  geom_bar(width = 1, stat = "identity")
+
+aaa<-0.0427
+aa<-0.0432
+a<-0.0442
+bbb<-0.0457
+bb<-0.0612
+b<-0.0711
+ccc<-0.1452
+d<-0.5189
+
+stopy<-function(mcPanstwo, kwota){
+  for (i in 1:length(mcPanstwo)){
+    if(mcPanstwo[i]=="AAA"){
+      mcPanstwo[i]=kwota/(1+aaa)^2
+    }
+    if(mcPanstwo[i]=="AA"){
+      mcPanstwo[i]=kwota/(1+aa)^2
+    }
+    if(mcPanstwo[i]=="A"){
+      mcPanstwo[i]=kwota/(1+a)^2
+    }
+    if(mcPanstwo[i]=="BBB"){
+      mcPanstwo[i]=kwota/(1+bbb)^2
+    }
+    if(mcPanstwo[i]=="BB"){
+      mcPanstwo[i]=kwota/(1+bb)^2
+    }
+    if(mcPanstwo[i]=="B"){
+      mcPanstwo[i]=kwota/(1+b)^2
+    }
+    if(mcPanstwo[i]=="CCC"){
+      mcPanstwo[i]=kwota/(1+ccc)^2
+    }
+    if(mcPanstwo[i]=="D"){
+      mcPanstwo[i]=kwota*d
+    }
+  }
+  return(mcPanstwo)
+}
+
+mc2<-mc
+mc2$Kanada<-as.double(stopy(mc2$Kanada, 1000000))
+mc2$UK<-as.double(stopy(mc2$UK, 1000000))
+mc2$Turcja<-as.double(stopy(mc2$Turcja, 1000000))
+mc2$Filipiny<-as.double(stopy(mc2$Filipiny, 1000000))
+mc2$wartosc<-apply(mc2,1,sum)
+
+suma=1000000/(1+aaa)^2 + 1000000/(1+aa)^2 + 1000000/(1+bbb)^2 + 1000000/(1+b)^2
+typeof(suma)
+str(mc2)
+
+for(i in 1:nrow(mc2)){
+  if(mc2$wartosc[i]<3624817){
+    mc2$strata[i]=3624817-mc2$wartosc[i]
+  }
+  else{
+    mc2$strata[i]=NA
+  }
+
+}
+
+VaR<-NULL
+VaR<-na.omit(mc2$strata)
+
+VaR<-as.vector(VaR)
+VaR<-sort(VaR)
+
+quantile(VaR, 0.99)

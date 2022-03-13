@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+<script src="lib/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lib/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="lib/kePrint-0.0.1/kePrint.js"></script>
+
+</head>
+<body>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:500px; "><table class="table table-striped table-condensed" style="margin-left: auto; margin-right: auto;">
+<caption>kanada</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Data </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Ostatnio </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Otwarcie </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Max. </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Min. </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Zmiana% </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Kwi. '19 </td>
+   <td style="text-align:right;"> 15.23 </td>
+   <td style="text-align:right;"> 15.37 </td>
+   <td style="text-align:right;"> 16.95 </td>
+   <td style="text-align:right;"> 14.95 </td>
+   <td style="text-align:right;"> -1.23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '19 </td>
+   <td style="text-align:right;"> 15.42 </td>
+   <td style="text-align:right;"> 17.97 </td>
+   <td style="text-align:right;"> 18.11 </td>
+   <td style="text-align:right;"> 14.21 </td>
+   <td style="text-align:right;"> -14.09 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '19 </td>
+   <td style="text-align:right;"> 17.95 </td>
+   <td style="text-align:right;"> 17.82 </td>
+   <td style="text-align:right;"> 18.63 </td>
+   <td style="text-align:right;"> 17.56 </td>
+   <td style="text-align:right;"> 0.73 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '19 </td>
+   <td style="text-align:right;"> 17.82 </td>
+   <td style="text-align:right;"> 18.32 </td>
+   <td style="text-align:right;"> 19.70 </td>
+   <td style="text-align:right;"> 17.44 </td>
+   <td style="text-align:right;"> -4.76 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '18 </td>
+   <td style="text-align:right;"> 18.71 </td>
+   <td style="text-align:right;"> 22.08 </td>
+   <td style="text-align:right;"> 22.40 </td>
+   <td style="text-align:right;"> 18.50 </td>
+   <td style="text-align:right;"> -14.41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '18 </td>
+   <td style="text-align:right;"> 21.86 </td>
+   <td style="text-align:right;"> 23.73 </td>
+   <td style="text-align:right;"> 24.00 </td>
+   <td style="text-align:right;"> 21.76 </td>
+   <td style="text-align:right;"> -7.72 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '18 </td>
+   <td style="text-align:right;"> 23.69 </td>
+   <td style="text-align:right;"> 22.73 </td>
+   <td style="text-align:right;"> 24.05 </td>
+   <td style="text-align:right;"> 22.73 </td>
+   <td style="text-align:right;"> 4.87 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '18 </td>
+   <td style="text-align:right;"> 22.59 </td>
+   <td style="text-align:right;"> 20.97 </td>
+   <td style="text-align:right;"> 22.69 </td>
+   <td style="text-align:right;"> 20.61 </td>
+   <td style="text-align:right;"> 7.88 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '18 </td>
+   <td style="text-align:right;"> 20.94 </td>
+   <td style="text-align:right;"> 21.22 </td>
+   <td style="text-align:right;"> 22.56 </td>
+   <td style="text-align:right;"> 20.89 </td>
+   <td style="text-align:right;"> -1.37 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '18 </td>
+   <td style="text-align:right;"> 21.23 </td>
+   <td style="text-align:right;"> 19.95 </td>
+   <td style="text-align:right;"> 21.36 </td>
+   <td style="text-align:right;"> 19.61 </td>
+   <td style="text-align:right;"> 6.74 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '18 </td>
+   <td style="text-align:right;"> 19.89 </td>
+   <td style="text-align:right;"> 20.23 </td>
+   <td style="text-align:right;"> 20.71 </td>
+   <td style="text-align:right;"> 18.38 </td>
+   <td style="text-align:right;"> -1.92 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maj '18 </td>
+   <td style="text-align:right;"> 20.28 </td>
+   <td style="text-align:right;"> 19.89 </td>
+   <td style="text-align:right;"> 22.12 </td>
+   <td style="text-align:right;"> 19.54 </td>
+   <td style="text-align:right;"> 1.76 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kwi. '18 </td>
+   <td style="text-align:right;"> 19.93 </td>
+   <td style="text-align:right;"> 18.95 </td>
+   <td style="text-align:right;"> 20.60 </td>
+   <td style="text-align:right;"> 18.81 </td>
+   <td style="text-align:right;"> 5.34 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '18 </td>
+   <td style="text-align:right;"> 18.92 </td>
+   <td style="text-align:right;"> 18.99 </td>
+   <td style="text-align:right;"> 20.26 </td>
+   <td style="text-align:right;"> 18.26 </td>
+   <td style="text-align:right;"> -0.11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '18 </td>
+   <td style="text-align:right;"> 18.94 </td>
+   <td style="text-align:right;"> 19.09 </td>
+   <td style="text-align:right;"> 19.80 </td>
+   <td style="text-align:right;"> 18.41 </td>
+   <td style="text-align:right;"> -0.26 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '18 </td>
+   <td style="text-align:right;"> 18.99 </td>
+   <td style="text-align:right;"> 17.35 </td>
+   <td style="text-align:right;"> 19.12 </td>
+   <td style="text-align:right;"> 17.26 </td>
+   <td style="text-align:right;"> 9.90 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '17 </td>
+   <td style="text-align:right;"> 17.28 </td>
+   <td style="text-align:right;"> 14.57 </td>
+   <td style="text-align:right;"> 17.51 </td>
+   <td style="text-align:right;"> 14.52 </td>
+   <td style="text-align:right;"> 16.91 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '17 </td>
+   <td style="text-align:right;"> 14.78 </td>
+   <td style="text-align:right;"> 14.53 </td>
+   <td style="text-align:right;"> 15.39 </td>
+   <td style="text-align:right;"> 14.49 </td>
+   <td style="text-align:right;"> 1.51 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '17 </td>
+   <td style="text-align:right;"> 14.56 </td>
+   <td style="text-align:right;"> 15.84 </td>
+   <td style="text-align:right;"> 16.36 </td>
+   <td style="text-align:right;"> 14.35 </td>
+   <td style="text-align:right;"> -8.02 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '17 </td>
+   <td style="text-align:right;"> 15.83 </td>
+   <td style="text-align:right;"> 13.48 </td>
+   <td style="text-align:right;"> 17.13 </td>
+   <td style="text-align:right;"> 13.48 </td>
+   <td style="text-align:right;"> 17.26 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '17 </td>
+   <td style="text-align:right;"> 13.50 </td>
+   <td style="text-align:right;"> 14.38 </td>
+   <td style="text-align:right;"> 14.45 </td>
+   <td style="text-align:right;"> 13.13 </td>
+   <td style="text-align:right;"> -6.05 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '17 </td>
+   <td style="text-align:right;"> 14.37 </td>
+   <td style="text-align:right;"> 12.55 </td>
+   <td style="text-align:right;"> 14.81 </td>
+   <td style="text-align:right;"> 12.55 </td>
+   <td style="text-align:right;"> 16.36 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '17 </td>
+   <td style="text-align:right;"> 12.35 </td>
+   <td style="text-align:right;"> 7.62 </td>
+   <td style="text-align:right;"> 12.36 </td>
+   <td style="text-align:right;"> 7.29 </td>
+   <td style="text-align:right;"> 64.23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maj '17 </td>
+   <td style="text-align:right;"> 7.52 </td>
+   <td style="text-align:right;"> 7.95 </td>
+   <td style="text-align:right;"> 8.05 </td>
+   <td style="text-align:right;"> 7.13 </td>
+   <td style="text-align:right;"> -5.41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kwi. '17 </td>
+   <td style="text-align:right;"> 7.95 </td>
+   <td style="text-align:right;"> 8.67 </td>
+   <td style="text-align:right;"> 8.77 </td>
+   <td style="text-align:right;"> 7.83 </td>
+   <td style="text-align:right;"> -8.41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '17 </td>
+   <td style="text-align:right;"> 8.68 </td>
+   <td style="text-align:right;"> 8.93 </td>
+   <td style="text-align:right;"> 10.31 </td>
+   <td style="text-align:right;"> 8.33 </td>
+   <td style="text-align:right;"> 0.23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '17 </td>
+   <td style="text-align:right;"> 8.66 </td>
+   <td style="text-align:right;"> 9.35 </td>
+   <td style="text-align:right;"> 9.84 </td>
+   <td style="text-align:right;"> 8.44 </td>
+   <td style="text-align:right;"> -6.78 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '17 </td>
+   <td style="text-align:right;"> 9.29 </td>
+   <td style="text-align:right;"> 9.43 </td>
+   <td style="text-align:right;"> 10.16 </td>
+   <td style="text-align:right;"> 8.82 </td>
+   <td style="text-align:right;"> -0.21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '16 </td>
+   <td style="text-align:right;"> 9.31 </td>
+   <td style="text-align:right;"> 8.48 </td>
+   <td style="text-align:right;"> 10.35 </td>
+   <td style="text-align:right;"> 8.41 </td>
+   <td style="text-align:right;"> 9.79 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '16 </td>
+   <td style="text-align:right;"> 8.48 </td>
+   <td style="text-align:right;"> 5.72 </td>
+   <td style="text-align:right;"> 8.56 </td>
+   <td style="text-align:right;"> 5.38 </td>
+   <td style="text-align:right;"> 48.25 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '16 </td>
+   <td style="text-align:right;"> 5.72 </td>
+   <td style="text-align:right;"> 5.30 </td>
+   <td style="text-align:right;"> 6.39 </td>
+   <td style="text-align:right;"> 5.16 </td>
+   <td style="text-align:right;"> 9.79 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '16 </td>
+   <td style="text-align:right;"> 5.21 </td>
+   <td style="text-align:right;"> 5.92 </td>
+   <td style="text-align:right;"> 6.40 </td>
+   <td style="text-align:right;"> 4.57 </td>
+   <td style="text-align:right;"> -11.54 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '16 </td>
+   <td style="text-align:right;"> 5.89 </td>
+   <td style="text-align:right;"> 5.58 </td>
+   <td style="text-align:right;"> 6.22 </td>
+   <td style="text-align:right;"> 5.03 </td>
+   <td style="text-align:right;"> 7.68 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '16 </td>
+   <td style="text-align:right;"> 5.47 </td>
+   <td style="text-align:right;"> 5.43 </td>
+   <td style="text-align:right;"> 6.40 </td>
+   <td style="text-align:right;"> 4.44 </td>
+   <td style="text-align:right;"> 0.74 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '16 </td>
+   <td style="text-align:right;"> 5.43 </td>
+   <td style="text-align:right;"> 6.42 </td>
+   <td style="text-align:right;"> 6.72 </td>
+   <td style="text-align:right;"> 4.72 </td>
+   <td style="text-align:right;"> -16.20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maj '16 </td>
+   <td style="text-align:right;"> 6.48 </td>
+   <td style="text-align:right;"> 7.41 </td>
+   <td style="text-align:right;"> 7.54 </td>
+   <td style="text-align:right;"> 5.51 </td>
+   <td style="text-align:right;"> -11.84 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kwi. '16 </td>
+   <td style="text-align:right;"> 7.35 </td>
+   <td style="text-align:right;"> 5.85 </td>
+   <td style="text-align:right;"> 7.68 </td>
+   <td style="text-align:right;"> 5.54 </td>
+   <td style="text-align:right;"> 26.72 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '16 </td>
+   <td style="text-align:right;"> 5.80 </td>
+   <td style="text-align:right;"> 5.37 </td>
+   <td style="text-align:right;"> 6.35 </td>
+   <td style="text-align:right;"> 4.98 </td>
+   <td style="text-align:right;"> 10.69 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '16 </td>
+   <td style="text-align:right;"> 5.24 </td>
+   <td style="text-align:right;"> 4.51 </td>
+   <td style="text-align:right;"> 5.45 </td>
+   <td style="text-align:right;"> 2.97 </td>
+   <td style="text-align:right;"> 20.46 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '16 </td>
+   <td style="text-align:right;"> 4.35 </td>
+   <td style="text-align:right;"> 5.01 </td>
+   <td style="text-align:right;"> 5.24 </td>
+   <td style="text-align:right;"> 2.98 </td>
+   <td style="text-align:right;"> -13.35 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '15 </td>
+   <td style="text-align:right;"> 5.02 </td>
+   <td style="text-align:right;"> 6.91 </td>
+   <td style="text-align:right;"> 7.10 </td>
+   <td style="text-align:right;"> 4.84 </td>
+   <td style="text-align:right;"> -26.39 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '15 </td>
+   <td style="text-align:right;"> 6.82 </td>
+   <td style="text-align:right;"> 6.15 </td>
+   <td style="text-align:right;"> 7.38 </td>
+   <td style="text-align:right;"> 6.15 </td>
+   <td style="text-align:right;"> 10.89 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '15 </td>
+   <td style="text-align:right;"> 6.15 </td>
+   <td style="text-align:right;"> 5.51 </td>
+   <td style="text-align:right;"> 6.26 </td>
+   <td style="text-align:right;"> 4.68 </td>
+   <td style="text-align:right;"> 15.60 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '15 </td>
+   <td style="text-align:right;"> 5.32 </td>
+   <td style="text-align:right;"> 4.65 </td>
+   <td style="text-align:right;"> 6.07 </td>
+   <td style="text-align:right;"> 4.40 </td>
+   <td style="text-align:right;"> 10.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '15 </td>
+   <td style="text-align:right;"> 4.83 </td>
+   <td style="text-align:right;"> 3.86 </td>
+   <td style="text-align:right;"> 4.83 </td>
+   <td style="text-align:right;"> 3.10 </td>
+   <td style="text-align:right;"> 24.48 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '15 </td>
+   <td style="text-align:right;"> 3.88 </td>
+   <td style="text-align:right;"> 5.25 </td>
+   <td style="text-align:right;"> 5.35 </td>
+   <td style="text-align:right;"> 3.58 </td>
+   <td style="text-align:right;"> -16.20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '15 </td>
+   <td style="text-align:right;"> 4.63 </td>
+   <td style="text-align:right;"> 5.81 </td>
+   <td style="text-align:right;"> 7.17 </td>
+   <td style="text-align:right;"> 4.63 </td>
+   <td style="text-align:right;"> -20.17 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maj '15 </td>
+   <td style="text-align:right;"> 5.80 </td>
+   <td style="text-align:right;"> 6.94 </td>
+   <td style="text-align:right;"> 7.78 </td>
+   <td style="text-align:right;"> 5.67 </td>
+   <td style="text-align:right;"> -15.82 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kwi. '15 </td>
+   <td style="text-align:right;"> 6.89 </td>
+   <td style="text-align:right;"> 4.95 </td>
+   <td style="text-align:right;"> 7.30 </td>
+   <td style="text-align:right;"> 4.49 </td>
+   <td style="text-align:right;"> 39.19 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '15 </td>
+   <td style="text-align:right;"> 4.95 </td>
+   <td style="text-align:right;"> 4.46 </td>
+   <td style="text-align:right;"> 6.65 </td>
+   <td style="text-align:right;"> 4.40 </td>
+   <td style="text-align:right;"> 10.49 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '15 </td>
+   <td style="text-align:right;"> 4.48 </td>
+   <td style="text-align:right;"> 3.89 </td>
+   <td style="text-align:right;"> 5.01 </td>
+   <td style="text-align:right;"> 3.50 </td>
+   <td style="text-align:right;"> 14.58 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '15 </td>
+   <td style="text-align:right;"> 3.91 </td>
+   <td style="text-align:right;"> 10.68 </td>
+   <td style="text-align:right;"> 11.02 </td>
+   <td style="text-align:right;"> 3.87 </td>
+   <td style="text-align:right;"> -63.39 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '14 </td>
+   <td style="text-align:right;"> 10.68 </td>
+   <td style="text-align:right;"> 10.49 </td>
+   <td style="text-align:right;"> 11.32 </td>
+   <td style="text-align:right;"> 9.94 </td>
+   <td style="text-align:right;"> 1.81 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '14 </td>
+   <td style="text-align:right;"> 10.49 </td>
+   <td style="text-align:right;"> 11.51 </td>
+   <td style="text-align:right;"> 11.95 </td>
+   <td style="text-align:right;"> 10.49 </td>
+   <td style="text-align:right;"> -8.86 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '14 </td>
+   <td style="text-align:right;"> 11.51 </td>
+   <td style="text-align:right;"> 12.88 </td>
+   <td style="text-align:right;"> 12.89 </td>
+   <td style="text-align:right;"> 9.62 </td>
+   <td style="text-align:right;"> -10.50 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '14 </td>
+   <td style="text-align:right;"> 12.86 </td>
+   <td style="text-align:right;"> 12.38 </td>
+   <td style="text-align:right;"> 13.51 </td>
+   <td style="text-align:right;"> 12.26 </td>
+   <td style="text-align:right;"> 5.15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '14 </td>
+   <td style="text-align:right;"> 12.23 </td>
+   <td style="text-align:right;"> 11.27 </td>
+   <td style="text-align:right;"> 12.27 </td>
+   <td style="text-align:right;"> 10.66 </td>
+   <td style="text-align:right;"> 8.33 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '14 </td>
+   <td style="text-align:right;"> 11.29 </td>
+   <td style="text-align:right;"> 11.75 </td>
+   <td style="text-align:right;"> 12.22 </td>
+   <td style="text-align:right;"> 10.93 </td>
+   <td style="text-align:right;"> -2.84 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '14 </td>
+   <td style="text-align:right;"> 11.62 </td>
+   <td style="text-align:right;"> 11.36 </td>
+   <td style="text-align:right;"> 12.17 </td>
+   <td style="text-align:right;"> 11.25 </td>
+   <td style="text-align:right;"> 2.38 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maj '14 </td>
+   <td style="text-align:right;"> 11.35 </td>
+   <td style="text-align:right;"> 11.88 </td>
+   <td style="text-align:right;"> 12.04 </td>
+   <td style="text-align:right;"> 11.16 </td>
+   <td style="text-align:right;"> -4.54 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kwi. '14 </td>
+   <td style="text-align:right;"> 11.89 </td>
+   <td style="text-align:right;"> 12.52 </td>
+   <td style="text-align:right;"> 13.01 </td>
+   <td style="text-align:right;"> 11.80 </td>
+   <td style="text-align:right;"> -4.42 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '14 </td>
+   <td style="text-align:right;"> 12.44 </td>
+   <td style="text-align:right;"> 11.81 </td>
+   <td style="text-align:right;"> 12.81 </td>
+   <td style="text-align:right;"> 11.58 </td>
+   <td style="text-align:right;"> 5.33 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '14 </td>
+   <td style="text-align:right;"> 11.81 </td>
+   <td style="text-align:right;"> 11.44 </td>
+   <td style="text-align:right;"> 13.48 </td>
+   <td style="text-align:right;"> 11.19 </td>
+   <td style="text-align:right;"> 3.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '14 </td>
+   <td style="text-align:right;"> 11.45 </td>
+   <td style="text-align:right;"> 12.09 </td>
+   <td style="text-align:right;"> 14.00 </td>
+   <td style="text-align:right;"> 11.41 </td>
+   <td style="text-align:right;"> -5.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '13 </td>
+   <td style="text-align:right;"> 12.07 </td>
+   <td style="text-align:right;"> 11.99 </td>
+   <td style="text-align:right;"> 12.33 </td>
+   <td style="text-align:right;"> 11.56 </td>
+   <td style="text-align:right;"> 1.17 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '13 </td>
+   <td style="text-align:right;"> 11.93 </td>
+   <td style="text-align:right;"> 12.21 </td>
+   <td style="text-align:right;"> 12.84 </td>
+   <td style="text-align:right;"> 11.76 </td>
+   <td style="text-align:right;"> -1.81 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '13 </td>
+   <td style="text-align:right;"> 12.15 </td>
+   <td style="text-align:right;"> 14.14 </td>
+   <td style="text-align:right;"> 14.43 </td>
+   <td style="text-align:right;"> 11.96 </td>
+   <td style="text-align:right;"> -13.52 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '13 </td>
+   <td style="text-align:right;"> 14.05 </td>
+   <td style="text-align:right;"> 14.58 </td>
+   <td style="text-align:right;"> 15.82 </td>
+   <td style="text-align:right;"> 13.88 </td>
+   <td style="text-align:right;"> -2.29 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '13 </td>
+   <td style="text-align:right;"> 14.38 </td>
+   <td style="text-align:right;"> 12.74 </td>
+   <td style="text-align:right;"> 15.15 </td>
+   <td style="text-align:right;"> 12.56 </td>
+   <td style="text-align:right;"> 13.05 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '13 </td>
+   <td style="text-align:right;"> 12.72 </td>
+   <td style="text-align:right;"> 13.26 </td>
+   <td style="text-align:right;"> 13.74 </td>
+   <td style="text-align:right;"> 11.72 </td>
+   <td style="text-align:right;"> -5.71 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '13 </td>
+   <td style="text-align:right;"> 13.49 </td>
+   <td style="text-align:right;"> 11.99 </td>
+   <td style="text-align:right;"> 13.94 </td>
+   <td style="text-align:right;"> 11.32 </td>
+   <td style="text-align:right;"> 12.89 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maj '13 </td>
+   <td style="text-align:right;"> 11.95 </td>
+   <td style="text-align:right;"> 10.27 </td>
+   <td style="text-align:right;"> 12.10 </td>
+   <td style="text-align:right;"> 10.08 </td>
+   <td style="text-align:right;"> 17.27 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kwi. '13 </td>
+   <td style="text-align:right;"> 10.19 </td>
+   <td style="text-align:right;"> 11.00 </td>
+   <td style="text-align:right;"> 11.09 </td>
+   <td style="text-align:right;"> 10.07 </td>
+   <td style="text-align:right;"> -7.36 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '13 </td>
+   <td style="text-align:right;"> 11.00 </td>
+   <td style="text-align:right;"> 11.11 </td>
+   <td style="text-align:right;"> 11.88 </td>
+   <td style="text-align:right;"> 10.79 </td>
+   <td style="text-align:right;"> -0.63 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '13 </td>
+   <td style="text-align:right;"> 11.07 </td>
+   <td style="text-align:right;"> 12.64 </td>
+   <td style="text-align:right;"> 13.29 </td>
+   <td style="text-align:right;"> 11.02 </td>
+   <td style="text-align:right;"> -11.65 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '13 </td>
+   <td style="text-align:right;"> 12.53 </td>
+   <td style="text-align:right;"> 12.20 </td>
+   <td style="text-align:right;"> 13.21 </td>
+   <td style="text-align:right;"> 11.83 </td>
+   <td style="text-align:right;"> 3.13 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '12 </td>
+   <td style="text-align:right;"> 12.15 </td>
+   <td style="text-align:right;"> 11.40 </td>
+   <td style="text-align:right;"> 12.45 </td>
+   <td style="text-align:right;"> 10.96 </td>
+   <td style="text-align:right;"> 6.86 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '12 </td>
+   <td style="text-align:right;"> 11.37 </td>
+   <td style="text-align:right;"> 11.80 </td>
+   <td style="text-align:right;"> 12.11 </td>
+   <td style="text-align:right;"> 11.24 </td>
+   <td style="text-align:right;"> -2.90 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '12 </td>
+   <td style="text-align:right;"> 11.71 </td>
+   <td style="text-align:right;"> 11.45 </td>
+   <td style="text-align:right;"> 12.65 </td>
+   <td style="text-align:right;"> 11.24 </td>
+   <td style="text-align:right;"> 2.54 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '12 </td>
+   <td style="text-align:right;"> 11.42 </td>
+   <td style="text-align:right;"> 12.22 </td>
+   <td style="text-align:right;"> 13.17 </td>
+   <td style="text-align:right;"> 11.30 </td>
+   <td style="text-align:right;"> -6.55 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '12 </td>
+   <td style="text-align:right;"> 12.22 </td>
+   <td style="text-align:right;"> 11.33 </td>
+   <td style="text-align:right;"> 13.97 </td>
+   <td style="text-align:right;"> 11.02 </td>
+   <td style="text-align:right;"> 8.62 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '12 </td>
+   <td style="text-align:right;"> 11.25 </td>
+   <td style="text-align:right;"> 10.53 </td>
+   <td style="text-align:right;"> 11.78 </td>
+   <td style="text-align:right;"> 9.66 </td>
+   <td style="text-align:right;"> 3.97 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '12 </td>
+   <td style="text-align:right;"> 10.82 </td>
+   <td style="text-align:right;"> 11.06 </td>
+   <td style="text-align:right;"> 11.62 </td>
+   <td style="text-align:right;"> 9.04 </td>
+   <td style="text-align:right;"> -2.70 </td>
+  </tr>
+</tbody>
+</table></div>
+</body>
+</html>

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+<script src="lib/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lib/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="lib/kePrint-0.0.1/kePrint.js"></script>
+
+</head>
+<body>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:500px; "><table class="table table-striped table-condensed" style="margin-left: auto; margin-right: auto;">
+<caption>kanada</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Data </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Ostatnio </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Otwarcie </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Max. </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Min. </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Zmiana% </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Kwi. '19 </td>
+   <td style="text-align:right;"> 58.92 </td>
+   <td style="text-align:right;"> 56.58 </td>
+   <td style="text-align:right;"> 60.17 </td>
+   <td style="text-align:right;"> 56.58 </td>
+   <td style="text-align:right;"> 4.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '19 </td>
+   <td style="text-align:right;"> 56.58 </td>
+   <td style="text-align:right;"> 61.26 </td>
+   <td style="text-align:right;"> 61.31 </td>
+   <td style="text-align:right;"> 56.58 </td>
+   <td style="text-align:right;"> -7.64 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '19 </td>
+   <td style="text-align:right;"> 61.26 </td>
+   <td style="text-align:right;"> 61.06 </td>
+   <td style="text-align:right;"> 61.75 </td>
+   <td style="text-align:right;"> 58.81 </td>
+   <td style="text-align:right;"> 0.33 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '19 </td>
+   <td style="text-align:right;"> 61.06 </td>
+   <td style="text-align:right;"> 69.72 </td>
+   <td style="text-align:right;"> 69.72 </td>
+   <td style="text-align:right;"> 61.06 </td>
+   <td style="text-align:right;"> -12.42 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '18 </td>
+   <td style="text-align:right;"> 69.72 </td>
+   <td style="text-align:right;"> 67.68 </td>
+   <td style="text-align:right;"> 69.72 </td>
+   <td style="text-align:right;"> 67.23 </td>
+   <td style="text-align:right;"> 3.01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '18 </td>
+   <td style="text-align:right;"> 67.68 </td>
+   <td style="text-align:right;"> 67.69 </td>
+   <td style="text-align:right;"> 69.40 </td>
+   <td style="text-align:right;"> 65.50 </td>
+   <td style="text-align:right;"> -0.01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '18 </td>
+   <td style="text-align:right;"> 67.69 </td>
+   <td style="text-align:right;"> 63.81 </td>
+   <td style="text-align:right;"> 76.37 </td>
+   <td style="text-align:right;"> 63.81 </td>
+   <td style="text-align:right;"> -3.77 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '18 </td>
+   <td style="text-align:right;"> 70.34 </td>
+   <td style="text-align:right;"> 53.54 </td>
+   <td style="text-align:right;"> 70.34 </td>
+   <td style="text-align:right;"> 53.38 </td>
+   <td style="text-align:right;"> 38.66 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '18 </td>
+   <td style="text-align:right;"> 50.73 </td>
+   <td style="text-align:right;"> 54.02 </td>
+   <td style="text-align:right;"> 54.02 </td>
+   <td style="text-align:right;"> 49.97 </td>
+   <td style="text-align:right;"> -1.07 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '18 </td>
+   <td style="text-align:right;"> 51.28 </td>
+   <td style="text-align:right;"> 49.72 </td>
+   <td style="text-align:right;"> 51.50 </td>
+   <td style="text-align:right;"> 49.32 </td>
+   <td style="text-align:right;"> 2.11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '18 </td>
+   <td style="text-align:right;"> 50.22 </td>
+   <td style="text-align:right;"> 47.01 </td>
+   <td style="text-align:right;"> 52.62 </td>
+   <td style="text-align:right;"> 46.65 </td>
+   <td style="text-align:right;"> 6.94 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maj '18 </td>
+   <td style="text-align:right;"> 46.96 </td>
+   <td style="text-align:right;"> 46.08 </td>
+   <td style="text-align:right;"> 50.11 </td>
+   <td style="text-align:right;"> 45.80 </td>
+   <td style="text-align:right;"> 2.85 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kwi. '18 </td>
+   <td style="text-align:right;"> 45.66 </td>
+   <td style="text-align:right;"> 45.84 </td>
+   <td style="text-align:right;"> 52.62 </td>
+   <td style="text-align:right;"> 45.36 </td>
+   <td style="text-align:right;"> -0.95 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '18 </td>
+   <td style="text-align:right;"> 46.10 </td>
+   <td style="text-align:right;"> 50.37 </td>
+   <td style="text-align:right;"> 53.05 </td>
+   <td style="text-align:right;"> 43.00 </td>
+   <td style="text-align:right;"> 8.42 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '18 </td>
+   <td style="text-align:right;"> 42.52 </td>
+   <td style="text-align:right;"> 42.02 </td>
+   <td style="text-align:right;"> 48.52 </td>
+   <td style="text-align:right;"> 41.96 </td>
+   <td style="text-align:right;"> 1.53 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '18 </td>
+   <td style="text-align:right;"> 41.88 </td>
+   <td style="text-align:right;"> 42.79 </td>
+   <td style="text-align:right;"> 45.48 </td>
+   <td style="text-align:right;"> 41.40 </td>
+   <td style="text-align:right;"> -2.56 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '17 </td>
+   <td style="text-align:right;"> 42.98 </td>
+   <td style="text-align:right;"> 42.60 </td>
+   <td style="text-align:right;"> 48.32 </td>
+   <td style="text-align:right;"> 42.49 </td>
+   <td style="text-align:right;"> 0.70 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '17 </td>
+   <td style="text-align:right;"> 42.68 </td>
+   <td style="text-align:right;"> 41.38 </td>
+   <td style="text-align:right;"> 48.29 </td>
+   <td style="text-align:right;"> 36.27 </td>
+   <td style="text-align:right;"> 11.38 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '17 </td>
+   <td style="text-align:right;"> 38.32 </td>
+   <td style="text-align:right;"> 36.43 </td>
+   <td style="text-align:right;"> 41.10 </td>
+   <td style="text-align:right;"> 36.43 </td>
+   <td style="text-align:right;"> 4.56 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '17 </td>
+   <td style="text-align:right;"> 36.65 </td>
+   <td style="text-align:right;"> 36.81 </td>
+   <td style="text-align:right;"> 36.81 </td>
+   <td style="text-align:right;"> 36.01 </td>
+   <td style="text-align:right;"> -2.21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '17 </td>
+   <td style="text-align:right;"> 37.48 </td>
+   <td style="text-align:right;"> 38.95 </td>
+   <td style="text-align:right;"> 38.96 </td>
+   <td style="text-align:right;"> 37.48 </td>
+   <td style="text-align:right;"> -3.80 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '17 </td>
+   <td style="text-align:right;"> 38.96 </td>
+   <td style="text-align:right;"> 39.25 </td>
+   <td style="text-align:right;"> 40.30 </td>
+   <td style="text-align:right;"> 38.82 </td>
+   <td style="text-align:right;"> 0.10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '17 </td>
+   <td style="text-align:right;"> 38.92 </td>
+   <td style="text-align:right;"> 38.65 </td>
+   <td style="text-align:right;"> 38.92 </td>
+   <td style="text-align:right;"> 38.20 </td>
+   <td style="text-align:right;"> 1.12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maj '17 </td>
+   <td style="text-align:right;"> 38.49 </td>
+   <td style="text-align:right;"> 40.65 </td>
+   <td style="text-align:right;"> 40.65 </td>
+   <td style="text-align:right;"> 38.16 </td>
+   <td style="text-align:right;"> -5.94 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kwi. '17 </td>
+   <td style="text-align:right;"> 40.92 </td>
+   <td style="text-align:right;"> 39.90 </td>
+   <td style="text-align:right;"> 41.39 </td>
+   <td style="text-align:right;"> 39.80 </td>
+   <td style="text-align:right;"> -0.17 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '17 </td>
+   <td style="text-align:right;"> 40.99 </td>
+   <td style="text-align:right;"> 36.92 </td>
+   <td style="text-align:right;"> 41.64 </td>
+   <td style="text-align:right;"> 36.92 </td>
+   <td style="text-align:right;"> 11.87 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '17 </td>
+   <td style="text-align:right;"> 36.64 </td>
+   <td style="text-align:right;"> 34.24 </td>
+   <td style="text-align:right;"> 36.82 </td>
+   <td style="text-align:right;"> 34.21 </td>
+   <td style="text-align:right;"> 7.45 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '17 </td>
+   <td style="text-align:right;"> 34.10 </td>
+   <td style="text-align:right;"> 42.00 </td>
+   <td style="text-align:right;"> 42.00 </td>
+   <td style="text-align:right;"> 33.56 </td>
+   <td style="text-align:right;"> -3.04 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '16 </td>
+   <td style="text-align:right;"> 35.17 </td>
+   <td style="text-align:right;"> 36.82 </td>
+   <td style="text-align:right;"> 42.21 </td>
+   <td style="text-align:right;"> 35.15 </td>
+   <td style="text-align:right;"> -4.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '16 </td>
+   <td style="text-align:right;"> 36.69 </td>
+   <td style="text-align:right;"> 36.82 </td>
+   <td style="text-align:right;"> 43.93 </td>
+   <td style="text-align:right;"> 27.00 </td>
+   <td style="text-align:right;"> -1.03 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '16 </td>
+   <td style="text-align:right;"> 37.07 </td>
+   <td style="text-align:right;"> 32.77 </td>
+   <td style="text-align:right;"> 37.07 </td>
+   <td style="text-align:right;"> 27.50 </td>
+   <td style="text-align:right;"> 12.57 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '16 </td>
+   <td style="text-align:right;"> 32.93 </td>
+   <td style="text-align:right;"> 29.20 </td>
+   <td style="text-align:right;"> 32.93 </td>
+   <td style="text-align:right;"> 25.26 </td>
+   <td style="text-align:right;"> 12.77 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '16 </td>
+   <td style="text-align:right;"> 29.20 </td>
+   <td style="text-align:right;"> 29.95 </td>
+   <td style="text-align:right;"> 30.50 </td>
+   <td style="text-align:right;"> 23.78 </td>
+   <td style="text-align:right;"> -4.51 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '16 </td>
+   <td style="text-align:right;"> 30.58 </td>
+   <td style="text-align:right;"> 30.66 </td>
+   <td style="text-align:right;"> 32.88 </td>
+   <td style="text-align:right;"> 25.20 </td>
+   <td style="text-align:right;"> -0.26 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '16 </td>
+   <td style="text-align:right;"> 30.66 </td>
+   <td style="text-align:right;"> 34.42 </td>
+   <td style="text-align:right;"> 34.62 </td>
+   <td style="text-align:right;"> 30.65 </td>
+   <td style="text-align:right;"> -8.04 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maj '16 </td>
+   <td style="text-align:right;"> 33.34 </td>
+   <td style="text-align:right;"> 37.12 </td>
+   <td style="text-align:right;"> 37.58 </td>
+   <td style="text-align:right;"> 33.15 </td>
+   <td style="text-align:right;"> -10.16 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kwi. '16 </td>
+   <td style="text-align:right;"> 37.11 </td>
+   <td style="text-align:right;"> 36.90 </td>
+   <td style="text-align:right;"> 37.82 </td>
+   <td style="text-align:right;"> 28.75 </td>
+   <td style="text-align:right;"> 0.57 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '16 </td>
+   <td style="text-align:right;"> 36.90 </td>
+   <td style="text-align:right;"> 40.45 </td>
+   <td style="text-align:right;"> 42.28 </td>
+   <td style="text-align:right;"> 36.78 </td>
+   <td style="text-align:right;"> -8.64 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '16 </td>
+   <td style="text-align:right;"> 40.39 </td>
+   <td style="text-align:right;"> 30.99 </td>
+   <td style="text-align:right;"> 41.10 </td>
+   <td style="text-align:right;"> 30.00 </td>
+   <td style="text-align:right;"> 28.34 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '16 </td>
+   <td style="text-align:right;"> 31.47 </td>
+   <td style="text-align:right;"> 42.27 </td>
+   <td style="text-align:right;"> 43.35 </td>
+   <td style="text-align:right;"> 31.47 </td>
+   <td style="text-align:right;"> -14.06 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '15 </td>
+   <td style="text-align:right;"> 36.62 </td>
+   <td style="text-align:right;"> 42.15 </td>
+   <td style="text-align:right;"> 42.42 </td>
+   <td style="text-align:right;"> 35.19 </td>
+   <td style="text-align:right;"> -13.49 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '15 </td>
+   <td style="text-align:right;"> 42.33 </td>
+   <td style="text-align:right;"> 32.82 </td>
+   <td style="text-align:right;"> 42.57 </td>
+   <td style="text-align:right;"> 32.79 </td>
+   <td style="text-align:right;"> 29.93 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '15 </td>
+   <td style="text-align:right;"> 32.58 </td>
+   <td style="text-align:right;"> 31.68 </td>
+   <td style="text-align:right;"> 32.58 </td>
+   <td style="text-align:right;"> 30.97 </td>
+   <td style="text-align:right;"> 5.03 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '15 </td>
+   <td style="text-align:right;"> 31.02 </td>
+   <td style="text-align:right;"> 30.12 </td>
+   <td style="text-align:right;"> 31.59 </td>
+   <td style="text-align:right;"> 30.06 </td>
+   <td style="text-align:right;"> 2.51 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '15 </td>
+   <td style="text-align:right;"> 30.26 </td>
+   <td style="text-align:right;"> 30.45 </td>
+   <td style="text-align:right;"> 30.45 </td>
+   <td style="text-align:right;"> 29.27 </td>
+   <td style="text-align:right;"> -0.62 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '15 </td>
+   <td style="text-align:right;"> 30.45 </td>
+   <td style="text-align:right;"> 30.20 </td>
+   <td style="text-align:right;"> 30.69 </td>
+   <td style="text-align:right;"> 29.47 </td>
+   <td style="text-align:right;"> 0.56 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '15 </td>
+   <td style="text-align:right;"> 30.28 </td>
+   <td style="text-align:right;"> 27.80 </td>
+   <td style="text-align:right;"> 36.47 </td>
+   <td style="text-align:right;"> 27.80 </td>
+   <td style="text-align:right;"> 6.47 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maj '15 </td>
+   <td style="text-align:right;"> 28.44 </td>
+   <td style="text-align:right;"> 35.33 </td>
+   <td style="text-align:right;"> 36.87 </td>
+   <td style="text-align:right;"> 27.81 </td>
+   <td style="text-align:right;"> -19.20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kwi. '15 </td>
+   <td style="text-align:right;"> 35.20 </td>
+   <td style="text-align:right;"> 35.23 </td>
+   <td style="text-align:right;"> 37.70 </td>
+   <td style="text-align:right;"> 28.25 </td>
+   <td style="text-align:right;"> 3.10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '15 </td>
+   <td style="text-align:right;"> 34.14 </td>
+   <td style="text-align:right;"> 33.93 </td>
+   <td style="text-align:right;"> 35.73 </td>
+   <td style="text-align:right;"> 33.89 </td>
+   <td style="text-align:right;"> -0.73 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '15 </td>
+   <td style="text-align:right;"> 34.39 </td>
+   <td style="text-align:right;"> 32.95 </td>
+   <td style="text-align:right;"> 35.35 </td>
+   <td style="text-align:right;"> 32.95 </td>
+   <td style="text-align:right;"> 3.58 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '15 </td>
+   <td style="text-align:right;"> 33.20 </td>
+   <td style="text-align:right;"> 34.82 </td>
+   <td style="text-align:right;"> 34.82 </td>
+   <td style="text-align:right;"> 32.43 </td>
+   <td style="text-align:right;"> -3.77 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '14 </td>
+   <td style="text-align:right;"> 34.50 </td>
+   <td style="text-align:right;"> 33.04 </td>
+   <td style="text-align:right;"> 35.57 </td>
+   <td style="text-align:right;"> 32.71 </td>
+   <td style="text-align:right;"> 8.59 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '14 </td>
+   <td style="text-align:right;"> 31.77 </td>
+   <td style="text-align:right;"> 32.17 </td>
+   <td style="text-align:right;"> 33.08 </td>
+   <td style="text-align:right;"> 28.17 </td>
+   <td style="text-align:right;"> -0.53 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '14 </td>
+   <td style="text-align:right;"> 31.94 </td>
+   <td style="text-align:right;"> 34.52 </td>
+   <td style="text-align:right;"> 34.67 </td>
+   <td style="text-align:right;"> 30.31 </td>
+   <td style="text-align:right;"> -5.59 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '14 </td>
+   <td style="text-align:right;"> 33.83 </td>
+   <td style="text-align:right;"> 30.54 </td>
+   <td style="text-align:right;"> 35.27 </td>
+   <td style="text-align:right;"> 30.54 </td>
+   <td style="text-align:right;"> 7.19 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '14 </td>
+   <td style="text-align:right;"> 31.56 </td>
+   <td style="text-align:right;"> 31.85 </td>
+   <td style="text-align:right;"> 35.54 </td>
+   <td style="text-align:right;"> 31.56 </td>
+   <td style="text-align:right;"> -1.19 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '14 </td>
+   <td style="text-align:right;"> 31.94 </td>
+   <td style="text-align:right;"> 28.62 </td>
+   <td style="text-align:right;"> 32.02 </td>
+   <td style="text-align:right;"> 28.62 </td>
+   <td style="text-align:right;"> 10.44 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '14 </td>
+   <td style="text-align:right;"> 28.92 </td>
+   <td style="text-align:right;"> 29.48 </td>
+   <td style="text-align:right;"> 30.79 </td>
+   <td style="text-align:right;"> 28.92 </td>
+   <td style="text-align:right;"> 1.26 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maj '14 </td>
+   <td style="text-align:right;"> 28.56 </td>
+   <td style="text-align:right;"> 33.46 </td>
+   <td style="text-align:right;"> 34.54 </td>
+   <td style="text-align:right;"> 28.56 </td>
+   <td style="text-align:right;"> -15.00 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kwi. '14 </td>
+   <td style="text-align:right;"> 33.60 </td>
+   <td style="text-align:right;"> 32.21 </td>
+   <td style="text-align:right;"> 34.81 </td>
+   <td style="text-align:right;"> 32.10 </td>
+   <td style="text-align:right;"> 6.16 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '14 </td>
+   <td style="text-align:right;"> 31.65 </td>
+   <td style="text-align:right;"> 30.42 </td>
+   <td style="text-align:right;"> 33.35 </td>
+   <td style="text-align:right;"> 27.46 </td>
+   <td style="text-align:right;"> 0.86 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '14 </td>
+   <td style="text-align:right;"> 31.38 </td>
+   <td style="text-align:right;"> 34.92 </td>
+   <td style="text-align:right;"> 34.92 </td>
+   <td style="text-align:right;"> 31.38 </td>
+   <td style="text-align:right;"> -8.75 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '14 </td>
+   <td style="text-align:right;"> 34.39 </td>
+   <td style="text-align:right;"> 28.02 </td>
+   <td style="text-align:right;"> 34.92 </td>
+   <td style="text-align:right;"> 28.02 </td>
+   <td style="text-align:right;"> 17.81 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '13 </td>
+   <td style="text-align:right;"> 29.19 </td>
+   <td style="text-align:right;"> 23.25 </td>
+   <td style="text-align:right;"> 29.19 </td>
+   <td style="text-align:right;"> 23.25 </td>
+   <td style="text-align:right;"> 23.90 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '13 </td>
+   <td style="text-align:right;"> 23.56 </td>
+   <td style="text-align:right;"> 23.67 </td>
+   <td style="text-align:right;"> 25.92 </td>
+   <td style="text-align:right;"> 22.60 </td>
+   <td style="text-align:right;"> -9.18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '13 </td>
+   <td style="text-align:right;"> 25.94 </td>
+   <td style="text-align:right;"> 30.58 </td>
+   <td style="text-align:right;"> 30.58 </td>
+   <td style="text-align:right;"> 22.65 </td>
+   <td style="text-align:right;"> -13.16 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '13 </td>
+   <td style="text-align:right;"> 29.87 </td>
+   <td style="text-align:right;"> 31.96 </td>
+   <td style="text-align:right;"> 31.96 </td>
+   <td style="text-align:right;"> 29.44 </td>
+   <td style="text-align:right;"> 4.66 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '13 </td>
+   <td style="text-align:right;"> 28.54 </td>
+   <td style="text-align:right;"> 24.38 </td>
+   <td style="text-align:right;"> 28.54 </td>
+   <td style="text-align:right;"> 23.96 </td>
+   <td style="text-align:right;"> 15.22 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '13 </td>
+   <td style="text-align:right;"> 24.77 </td>
+   <td style="text-align:right;"> 31.02 </td>
+   <td style="text-align:right;"> 31.35 </td>
+   <td style="text-align:right;"> 24.31 </td>
+   <td style="text-align:right;"> -26.02 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '13 </td>
+   <td style="text-align:right;"> 33.48 </td>
+   <td style="text-align:right;"> 27.46 </td>
+   <td style="text-align:right;"> 36.94 </td>
+   <td style="text-align:right;"> 26.14 </td>
+   <td style="text-align:right;"> 29.82 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maj '13 </td>
+   <td style="text-align:right;"> 25.79 </td>
+   <td style="text-align:right;"> 22.81 </td>
+   <td style="text-align:right;"> 32.52 </td>
+   <td style="text-align:right;"> 22.81 </td>
+   <td style="text-align:right;"> 6.92 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kwi. '13 </td>
+   <td style="text-align:right;"> 24.12 </td>
+   <td style="text-align:right;"> 26.83 </td>
+   <td style="text-align:right;"> 29.21 </td>
+   <td style="text-align:right;"> 18.75 </td>
+   <td style="text-align:right;"> -15.72 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar. '13 </td>
+   <td style="text-align:right;"> 28.62 </td>
+   <td style="text-align:right;"> 29.17 </td>
+   <td style="text-align:right;"> 30.65 </td>
+   <td style="text-align:right;"> 26.09 </td>
+   <td style="text-align:right;"> 1.38 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luty '13 </td>
+   <td style="text-align:right;"> 28.23 </td>
+   <td style="text-align:right;"> 34.00 </td>
+   <td style="text-align:right;"> 34.38 </td>
+   <td style="text-align:right;"> 28.20 </td>
+   <td style="text-align:right;"> -16.97 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sty. '13 </td>
+   <td style="text-align:right;"> 34.00 </td>
+   <td style="text-align:right;"> 38.25 </td>
+   <td style="text-align:right;"> 39.79 </td>
+   <td style="text-align:right;"> 32.86 </td>
+   <td style="text-align:right;"> -11.13 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gru. '12 </td>
+   <td style="text-align:right;"> 38.26 </td>
+   <td style="text-align:right;"> 38.36 </td>
+   <td style="text-align:right;"> 39.89 </td>
+   <td style="text-align:right;"> 37.21 </td>
+   <td style="text-align:right;"> -0.23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lis. '12 </td>
+   <td style="text-align:right;"> 38.35 </td>
+   <td style="text-align:right;"> 40.02 </td>
+   <td style="text-align:right;"> 40.40 </td>
+   <td style="text-align:right;"> 36.98 </td>
+   <td style="text-align:right;"> -4.70 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paź. '12 </td>
+   <td style="text-align:right;"> 40.24 </td>
+   <td style="text-align:right;"> 39.25 </td>
+   <td style="text-align:right;"> 40.90 </td>
+   <td style="text-align:right;"> 38.60 </td>
+   <td style="text-align:right;"> 2.97 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wrz. '12 </td>
+   <td style="text-align:right;"> 39.08 </td>
+   <td style="text-align:right;"> 40.65 </td>
+   <td style="text-align:right;"> 40.65 </td>
+   <td style="text-align:right;"> 38.56 </td>
+   <td style="text-align:right;"> -3.51 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sie. '12 </td>
+   <td style="text-align:right;"> 40.50 </td>
+   <td style="text-align:right;"> 38.38 </td>
+   <td style="text-align:right;"> 40.63 </td>
+   <td style="text-align:right;"> 38.38 </td>
+   <td style="text-align:right;"> 2.84 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lip. '12 </td>
+   <td style="text-align:right;"> 39.38 </td>
+   <td style="text-align:right;"> 38.38 </td>
+   <td style="text-align:right;"> 40.17 </td>
+   <td style="text-align:right;"> 36.94 </td>
+   <td style="text-align:right;"> 0.61 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cze. '12 </td>
+   <td style="text-align:right;"> 39.14 </td>
+   <td style="text-align:right;"> 39.31 </td>
+   <td style="text-align:right;"> 40.73 </td>
+   <td style="text-align:right;"> 38.00 </td>
+   <td style="text-align:right;"> -2.90 </td>
+  </tr>
+</tbody>
+</table></div>
+</body>
+</html>

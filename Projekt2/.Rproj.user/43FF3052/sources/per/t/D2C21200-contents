@@ -1,0 +1,602 @@
+---
+title: "Credit Metrics"
+author: "Jakub Augustynek"
+date: "29 04 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Ratingi kredytowe
+
+</br> 
+
+**Rating kredytowy** jest to kredytowa ocena klasyfikacyjna oceniająca i kategoryzująca poziom zdolności kredytowej danego podmiotu, długu lub zobowiązania finansowego lub emitenta takich długów lub zobowiązań finansowych. </br>
+Agencje ratingowe w celu oceny wiarygodności kredytowej używają kilku standardowych systemów. Na podstawie różnych czynników oceniają jakość obligacji używając do tego ratingów. </br>
+
+Początki ratingów sięgają XIX wieku, związane są z kryzysem finansowym w Stanach Zjednoczonych. Niektóre agencje handlowe zaczęły wydawać świadectwa oceniające zdolność kupców i hurtowników to regulowania zobowiązań finansowych.</br> </br> 
+
+#### Agencje ratingowe
+
+Agencje ratingowe oceniają nie tylko przedsiębiorstwa i fundusze inwestycyjne, ale także państwa i samorządy lokalne. </br> 
+Jednymi z najważniejszych agencji ratingowych sa:
+<ul>
+<li> Standard & Poor’s (S&P) </li>
+<li> Fitch </li>
+<li> Moody's </li>
+</ul>
+</br> 
+
+#### Ratingi
+
+W agencjach S&P i Fitch możliwe ratingi od najwyższego do najniższego to:
+<ul>
+<li> <span style="color:green"> AAA </span> </li>
+<li> <span style="color:green"> AA </span> </li>
+<li> <span style="color:green"> A </span> </li>
+<li> <span style="color:green"> BBB </span>  Obligacje od BBB wzwyż mają **standard inwestycyjny** </li>
+<li> BB </li>
+<li> B </li>
+<li> CCC </li>
+<li> <span style="color:red"> D </span> **Bankructwo** </li>
+</ul>
+
+</br> 
+
+#### Kraje
+
+W projekcie tym portfel będzie się składał z obligacji 3 letnich następujących krajów:
+<ul>
+<li> **Kanada** - rating **AAA** </li>
+<li> **Wielka Brytania** - rating **AA** </li>
+<li> **Filipiny** - rating **BBB** </li>
+<li> **Turcja** - rating **B** </li>
+</ul>
+
+Kraje te są dość zróżnicowane pod względem ratingu, Kanada ma najwyższy z możliwych, a Turcja jest poniżej standardu inwestycyjnego. </br> 
+Są dużymi krajami, Kanada jest drugim największym krajem, Turcja ma ponad dwa razy większą powierzchnię od Polski, a Filipiny i Wielka Brytania są podobnej wielkości. 
+
+### Kanada
+
+Kanada ma **wysoką wiarygodność kredytową**, po prześledzeniu danych historycznych zauważyłem, że rating waha się między AAA, a AA. </br> 
+PKB per capita wynosi ponad 51 315 USD. Jest to najwyższa wartość z wybranych przeze mnie do portfela państw. Roczne tempo wzrostu PKB to około 1,6 %. 
+
+### Wielka Brytania
+
+Wielka Brytania przez wiele lat miała rating AAA, od 2016 roku jej **wiarygodność kredytowa spadła** do AA. Właśnie w 2016 roku było głosowanie w sprawie BREXITU, czyli wyjścia Wielkiej Brytanii z Unii Europejskiej, wydaje mi się, że mogło to mieć wpływ na zmniejszenie ratingu. Według portalu *tradingeconomics.com* **perspektywa zmian ratingu jest negatywna**.  PKB per capita wynosi 42 519 USD, jest wysokie, w rankingu największego PKB per capita znajduje się kilka miejsc za Kanadą. Roczne tempo wzrostu PKB to 1,4 %. Ma tendecję wzrostową. 
+
+### Filipiny
+
+Filipiny mają rating BBB, czyli są **na granicy standardu inwestycyjnego**. W ciągu ostatnich lat kraj ten **sukcesywnie zwiększał swoją wiarygodność kredytową**. Od roku 2013 ma rating BBB, wcześniej rating miał wartość BB, lub B. Według portalu *tradingeconomics.com* **perspektywa zmian ratingu jest pozytywna**. PKB per capita wynosi 2891 USD, nie jest to wartość duża w porównaniu do poprzednio wymienionych państw, ale tempo wztostu PKB to ponad 6,3%. Kraj ten bardzo szybko się rozwija, razem z Tajlandią, Indonezją, Malezją i Wietnamem nazywane są **nowymi azjatyckimi tygrysami**, porównywane są do Korei Południowej, Tajwanu, Singapuru, czy Hongkongu, które w latach 1960-1995 rosły w tempie nawet kilkunastu procent rocznie, a dziś są w gronie najzamożniejszych azjatyckich państw. PKB ma na najbliższe lata tendencję wzrostową. 
+
+### Turcja
+
+Turcja ma rating B. Jest on **poniżej granicy standardu inwestycyjnego**. Na przestrzeni lat jej wiarygodnośc kredytowa zmieniała się, w latach 2005-2018 była na poziomie BB lub nawet BBB. Obniżenie ratingu jest prawdopodobnie spowodowane spadkiem ceny tureckiej liry i bezradności tureckiego rządu w tej kwestii. PKB per capita wynosi 14 933 USD. W ostatnich latach PKB rosło bardzo szybko, nawet 11%, lecz teraz na skutek recesji wzrost będzie dużo mniejszy.
+</br> 
+</br> 
+</br> 
+</br> 
+
+## Metoda CreditMetrics
+</br> 
+W projekcie tym wykorzystując metodę **CreditMetrics** obliczę VaR (**Value at Risk**) kredytowy dla obligacji powyżej przytoczonych krajów. Metoda ta została opublikowana w roku 1997 w postaci dokumentacji technicznej przez **J.P. Morgan** (przy współpracy z m. in. Bank of Montreal, Bank of America, BZW, Deutsche Morgan Grenfell). Była ona przeznaczona do wyznaczania wartości zagrożonej aktywów niepodlegających obrotowi publicznemu, na przykład: 
+<ul>
+<li>pożyczek</li>
+<li>obligacji prywatnie emitowanych</li>
+<li>wierzytelności leasingowych lub z tytułu factoringu</li>
+</ul>
+Model ten bierzę pod uwagę straty nie tylko wynikające z niewypłacalności, ale także wynikające ze zmiany ratingów. </br> 
+</br> 
+
+
+### Wczytuję biblioteki
+```{r biblioteki, warning=FALSE, message=FALSE}
+library(readr)
+library(readxl)
+library(BDgraph)
+library(ggplot2)
+library(ggcorrplot)
+library(knitr)
+library(zoo)
+library(kableExtra)
+library(dplyr)
+```
+</br> 
+</br> 
+
+### Wczytuję dane
+
+Dane historyczne dotyczące notowań obligacji 3-letnich dla czterech krajów: Kanady, Wielkiej Brytanii, Filipin i Turcji pobieram ze strony https://pl.investing.com. To dane miesięczne **od czerwca 2012 roku do kwietnia 2019** roku. Dane zawierają informacje o ostatniej wartości obligacji, wartości otwarcia, wartości maksymalnej i minimalnej oraz procentowej zmianie wartości obligacji z danego miesiąca.</br> 
+Było 83 obserwacji. Nie było brakujących danych.
+</br> 
+
+#### Dane dla Kanady
+```{r dane1 }
+#rating AAA
+kanada <- read_csv("../data/Kanada3lata.csv", col_types = cols(Max. = col_number(), 
+                    Min. = col_number(), Ostatnio = col_number(), 
+                    Otwarcie = col_number(), `Zmiana%` = col_number()))
+
+kanada$Ostatnio=kanada$Ostatnio/100
+kanada$Otwarcie=kanada$Otwarcie/100
+kanada$Max.=kanada$Max./100
+kanada$Min.=kanada$Min./100
+kanada$`Zmiana%`=kanada$`Zmiana%`/100
+kanada %>%
+    kable(caption = 'kanada') %>%
+    kable_styling(bootstrap_options = c('striped', 'condensed')) %>%
+    scroll_box( height = "200px")
+```
+
+#### Wykres wartości obligacji dla Kanady
+```{r wykresdane1, echo=FALSE, warning=FALSE, message=FALSE}
+mies<-rep(c("04-", "03-", "02-", "01-", "12-", "11-", "10-", "09-", "08-", "07-", "06-", "05-"),7)
+rok<-rep("2019",4)
+rok<-c(rok,rep("2018", 12),rep("2017", 12),rep("2016", 12),rep("2015", 12),rep("2014", 12),rep("2013", 12),rep("2012", 12))
+rok<-rok[1:83]
+mies<-mies[1:83]
+kanada$Rok<-rok
+kanada$Mies<-mies
+kanada$data<- paste0(kanada$Mies,kanada$Rok)
+kanada$data<-as.yearmon(kanada$data, "%m-%Y")
+
+ggplot(kanada, aes(x=data, y=Ostatnio))+geom_line()
+```
+
+#### Dane dla Wielkiej Brytanii
+```{r dane2, echo=FALSE, warning=FALSE}
+UK <- read_csv("../data/UK3lata.csv", col_types = cols(Max. = col_number(), 
+                  Min. = col_number(), Ostatnio = col_number(), 
+                  Otwarcie = col_number(), `Zmiana%` = col_number()))
+UK=UK[order(nrow(UK):1),]
+UK$Ostatnio=UK$Ostatnio/100
+UK$Otwarcie=UK$Otwarcie/100
+UK$Max.=UK$Max./100
+UK$Min.=UK$Min./100
+UK$`Zmiana%`=UK$`Zmiana%`/100
+UK %>%
+    kable(caption = 'UK') %>%
+    kable_styling(bootstrap_options = c('striped', 'condensed')) %>%
+    scroll_box( height = "200px")
+```
+
+#### Wykres wartości obligacji dla Wielkiej Brytanii
+```{r wykresdane2, echo=FALSE, message=FALSE}
+mies<-rep(c("04-", "03-", "02-", "01-", "12-", "11-", "10-", "09-", "08-", "07-", "06-", "05-"),7)
+rok<-rep("2019",4)
+rok<-c(rok,rep("2018", 12),rep("2017", 12),rep("2016", 12),rep("2015", 12),rep("2014", 12),rep("2013", 12),rep("2012", 12))
+rok<-rok[1:83]
+mies<-mies[1:83]
+UK$Rok<-rok
+UK$Mies<-mies
+UK$data<- paste0(UK$Mies,UK$Rok)
+UK$data<-as.yearmon(UK$data, "%m-%Y")
+
+ggplot(UK, aes(x=data, y=Ostatnio))+geom_line()
+```
+
+#### Dane dla Filipin
+
+```{r dane3, echo=FALSE}
+#rating BBB
+filipiny <- read_csv("../data/Filipiny3lata.csv", col_types = cols(Max. = col_number(), 
+                    Min. = col_number(), Ostatnio = col_number(), 
+                    Otwarcie = col_number(), `Zmiana%` = col_number()))
+
+filipiny$Ostatnio=filipiny$Ostatnio/100
+filipiny$Otwarcie=filipiny$Otwarcie/100
+filipiny$Max.=filipiny$Max./100
+filipiny$Min.=filipiny$Min./100
+filipiny$`Zmiana%`=filipiny$`Zmiana%`/100
+filipiny %>%
+    kable(caption = 'kanada') %>%
+    kable_styling(bootstrap_options = c('striped', 'condensed')) %>%
+    scroll_box( height = "200px")
+```
+
+#### Wykres wartości obligacji dla Filipin
+```{r wykresdane3, echo=FALSE, message=FALSE}
+mies<-rep(c("04-", "03-", "02-", "01-", "12-", "11-", "10-", "09-", "08-", "07-", "06-", "05-"),7)
+rok<-rep("2019",4)
+rok<-c(rok,rep("2018", 12),rep("2017", 12),rep("2016", 12),rep("2015", 12),rep("2014", 12),rep("2013", 12),rep("2012", 12))
+rok<-rok[1:83]
+mies<-mies[1:83]
+filipiny$Rok<-rok
+filipiny$Mies<-mies
+filipiny$data<- paste0(filipiny$Mies,filipiny$Rok)
+filipiny$data<-as.yearmon(filipiny$data, "%m-%Y")
+
+ggplot(filipiny, aes(x=data, y=Ostatnio))+geom_line()
+```
+
+#### Dane dla Turcji 
+```{r dane4, echo=FALSE}
+#rating B+
+turcja <- read_csv("../data/Turcja3lata.csv", col_types = cols(Ostatnio = col_number(), 
+                         `Zmiana%` = col_number()))
+
+turcja$Ostatnio=turcja$Ostatnio/1000
+turcja$Otwarcie=turcja$Otwarcie/1000
+turcja$Max.=turcja$Max./1000
+turcja$Min.=turcja$Min./1000
+turcja$`Zmiana%`=turcja$`Zmiana%`/100
+turcja %>%
+    kable(caption = 'Turcja') %>%
+    kable_styling(bootstrap_options = c('striped', 'condensed')) %>%
+    scroll_box( height = "200px")
+```
+
+#### Wykres wartości obligacji dla Turcji
+```{r wykresdane4, echo=FALSE, message=FALSE}
+mies<-rep(c("04-", "03-", "02-", "01-", "12-", "11-", "10-", "09-", "08-", "07-", "06-", "05-"),7)
+rok<-rep("2019",4)
+rok<-c(rok,rep("2018", 12),rep("2017", 12),rep("2016", 12),rep("2015", 12),rep("2014", 12),rep("2013", 12),rep("2012", 12))
+rok<-rok[1:83]
+mies<-mies[1:83]
+turcja$Rok<-rok
+turcja$Mies<-mies
+turcja$data<- paste0(turcja$Mies,turcja$Rok)
+turcja$data<-as.yearmon(turcja$data, "%m-%Y")
+
+ggplot(turcja, aes(x=data, y=Ostatnio))+geom_line()
+```
+</br> 
+</br> 
+
+### Korelacje między zmianami miesięcznymi obligacji różnych krajów
+
+Po utworzeniu data frame zawierającego zmiany miesięczne wartości obligacji dla 4 krajów, obliczam ich korelację. 
+```{r korelacje }
+zmiany<-data.frame("Kanada"=kanada$`Zmiana%`, "UK"=UK$`Zmiana%`, "Turcja"=turcja$`Zmiana%`, "Filipiny"=filipiny$`Zmiana%`)
+#macierz korelacji
+korelacje<-cor(zmiany)
+ggcorrplot(korelacje, lab = T, type = "lower")
+```
+</br> 
+
+Zmiany wartości obligacji nie są ze sobą silnie skorelowane. Największa zależność jest dla Wielkiej Brytanii i Kanady 0.33, Filipin i Kanady 0.27 oraz Turcji i Kanady 0.23.  
+</br> 
+
+## Generowanie scenariuszy
+
+W celu zastosowania metody Monte Carlo z wielowymiarowego rozkładu normalnego wylosowano 50 000 scenariuszy o parametrze sigma równym obliczonej macierzy korelacji. 
+```{r losowanie}
+set.seed(100)
+mc<-rmvnorm(50000, sigma=korelacje)
+mc<-as.data.frame(mc)
+mc[1:2000,] %>%
+    kable(caption = 'Scenarios') %>%
+    kable_styling(bootstrap_options = c('striped', 'condensed')) %>%
+    scroll_box( height = "200px")
+```
+</br> 
+
+## Przypisanie ratingów
+
+Kolejnym krokiem było przyporządkowanie ratingów do wygenerowanych wartości w scenariuszach. W tym celu dla każdego z państw, korzystając z macierzy przejścia utworzono przedziały pozwalające przyporządkować ratingi do wartości w scenariuszu.
+</br> 
+</br> 
+
+### Przedziały dla Kanady
+```{r macierzKraj}
+macierzKanada<-matrix(data=0, nrow = 4, ncol=6)
+macierzKanada[1,]<-c(0.085,0.0106, 0.0028, 0.0022, 0.001, 0)
+macierzKanada[2,]<-c(1, 0.085, 0.0106, 0.0028, 0.0022, 0.001)
+
+for (i in 1:6){
+  macierzKanada[3,i]=quantile(mc$Kanada,macierzKanada[1,i])
+  macierzKanada[4,i]=quantile(mc$Kanada, macierzKanada[2,i])
+  }
+colnames(macierzKanada)<-(c("AAA", "AA", "A", "BBB", "BB", "B"))
+row.names(macierzKanada)<-c("Kwantyl od", "Kwantyl do", "Wartosc od", "Wartosc do")
+kable(macierzKanada)  %>%
+    kable_styling(bootstrap_options = c('striped', 'condensed'))
+```
+</br> 
+
+### Przedziały dla Wielkiej Brytanii
+```{r macierzKraj2, echo=FALSE}
+macierzUK<-matrix(data=0, nrow = 4, ncol=8)
+macierzUK[1,]<-c(0.993,0.0915, 0.0236, 0.0153, 0.0047, 0.0003, 0.0001, 0)
+macierzUK[2,]<-c(1, 0.993,0.0915, 0.0236, 0.0153, 0.0047, 0.0003, 0.0001)
+
+for (i in 1:8){
+  macierzUK[3,i]=quantile(mc$UK,macierzUK[1,i])
+  macierzUK[4,i]=quantile(mc$UK, macierzUK[2,i])
+}
+colnames(macierzUK)<-(c("AAA", "AA", "A", "BBB", "BB", "B", "CCC", "D"))
+row.names(macierzUK)<-c("Kwantyl od", "Kwantyl do", "Wartosc od", "Wartosc do")
+kable(macierzUK) %>%
+    kable_styling(bootstrap_options = c('striped', 'condensed'))
+```
+</br> 
+
+### Przedziały dla Turcji
+```{r macierzKraj3, echo=FALSE}
+macierzTurcja<-matrix(data=0, nrow = 4, ncol=7)
+macierzTurcja[1,]<-c(0.9991,0.997, 0.9921, 0.924, 0.0883, 0.0003, 0)
+macierzTurcja[2,]<-c(1, 0.9991,0.997, 0.9921, 0.924, 0.0883, 0.0003)
+
+for (i in 1:7){
+  macierzTurcja[3,i]=quantile(mc$Turcja,macierzTurcja[1,i])
+  macierzTurcja[4,i]=quantile(mc$Turcja, macierzTurcja[2,i])
+}
+
+colnames(macierzTurcja)<-(c("AA", "A", "BBB", "BB", "B", "CCC", "D"))
+row.names(macierzTurcja)<-c("Kwantyl od", "Kwantyl do", "Wartosc od", "Wartosc do")
+kable(macierzTurcja) %>%
+    kable_styling(bootstrap_options = c('striped', 'condensed'))
+```
+</br> 
+
+### Przedziały dla Filipin
+```{r macierzKraj4, echo=FALSE}
+macierzFilipiny<-matrix(data=0, nrow = 4, ncol=8)
+macierzFilipiny[1,]<-c(0.9995,0.9952, 0.9338, 0.0645, 0.0149, 0.003, 0.0018, 0)
+macierzFilipiny[2,]<-c(1, 0.9995,0.9952, 0.9338, 0.0645, 0.0149, 0.003, 0.0018)
+
+for (i in 1:8){
+  macierzFilipiny[3,i]=quantile(mc$Filipiny,macierzFilipiny[1,i])
+  macierzFilipiny[4,i]=quantile(mc$Filipiny, macierzFilipiny[2,i])
+}
+
+colnames(macierzFilipiny)<-(c("AAA", "AA", "A", "BBB", "BB", "B", "CCC", "D"))
+row.names(macierzFilipiny)<-c("Kwantyl od", "Kwantyl do", "Wartosc od", "Wartosc do")
+kable(macierzFilipiny) %>%
+    kable_styling(bootstrap_options = c('striped', 'condensed'))
+```
+</br> 
+</br> 
+
+### Funkcja przyporzadkujaca wartość ratingu wartościom scenariusza
+W celu przyporządkowania ratingów dla wartości scenariusza utworzona została funkcja porządkująca, która jako orgumenty pobiera macierz z przedziałami dla danego kraju i wartości wylosowanych scenariuszy dla danego państwa.
+</br> 
+
+```{r porzadkuj}
+porzadkuj<-function(macierzKraju, mcarl)
+{
+  if(colnames(macierzKraju)[1]=="AAA")
+  {
+    aaa<-which((mcarl>(macierzKraju[3,1])))
+    aa<-which((mcarl<(macierzKraju[4,2]))&mcarl>(macierzKraju[3,2]))
+    a<-which((mcarl<(macierzKraju[4,3]))&mcarl>(macierzKraju[3,3]))
+    bbb<-which((mcarl<(macierzKraju[4,4]))&mcarl>(macierzKraju[3,4]))
+    bb<-which((mcarl<(macierzKraju[4,5]))&mcarl>(macierzKraju[3,5]))
+    b<-which((mcarl<(macierzKraju[4,6]))&mcarl>=(macierzKraju[3,6]))
+    
+    if(ncol(macierzKraju)>6)
+      {
+        ccc<-which((mcarl<(macierzKraju[4,7]))&mcarl>=(macierzKraju[3,7]))
+        d<-which((mcarl<(macierzKraju[4,8]))&mcarl>=(macierzKraju[3,8]))
+        mcarl[ccc]="CCC"
+        mcarl[d]="D"
+      }
+    mcarl[aaa]="AAA"
+    mcarl[aa]="AA"
+    mcarl[a]="A"
+    mcarl[bbb]="BBB"
+    mcarl[bb]="BB"
+    mcarl[b]="B"
+  }
+  else
+  {
+    aaa=0
+    aa<-which((mcarl>(macierzKraju[3,1])))
+    a<-which((mcarl<(macierzKraju[4,2]))&mcarl>(macierzKraju[3,2]))
+    bbb<-which((mcarl<(macierzKraju[4,3]))&mcarl>(macierzKraju[3,3]))
+    bb<-which((mcarl<(macierzKraju[4,4]))&mcarl>(macierzKraju[3,4]))
+    b<-which((mcarl<(macierzKraju[4,5]))&mcarl>(macierzKraju[3,5]))
+    ccc<-which((mcarl<(macierzKraju[4,6]))&mcarl>(macierzKraju[3,6]))
+    d<-which((mcarl<(macierzKraju[4,7]))&mcarl>=(macierzKraju[3,7]))
+  
+    mcarl[aaa]="AAA"
+    mcarl[aa]="AA"
+    mcarl[a]="A"
+    mcarl[bbb]="BBB"
+    mcarl[bb]="BB"
+    mcarl[b]="B"
+    mcarl[ccc]="CCC"
+    mcarl[d]="D"
+  }
+  return(mcarl)
+}
+```
+
+### Przypisane ratingi do scenariuszy
+W wyniku zastosowania funkcji przyporządkującej utworzony został data frame z przypisanymi wartościami ratingu dla wszystkich 50 000 scenariuszy. 
+
+```{r mcZratingami, echo=FALSE}
+mc$Kanada<-porzadkuj(macierzKanada, mc$Kanada)
+mc$UK<-porzadkuj(macierzUK, mc$UK)
+mc$Turcja<-porzadkuj(macierzTurcja, mc$Turcja)
+mc$Filipiny<-porzadkuj(macierzFilipiny, mc$Filipiny)
+mc[1:2000,] %>%
+    kable(caption = 'Scenarios') %>%
+    kable_styling(bootstrap_options = c('striped', 'condensed')) %>%
+    scroll_box( height = "200px")
+```
+
+### Wyniki symulacji
+Poniższa tabela przedstawia podsumowanie wyników zsumowania wszystkich wartości ratingów ze scenariusza dla różnych krajów.</br>  Jak widać w prawie dzięwięćdziesięciu procentach przypadków **rating danego kraju był taki sam jak najczęstszy wynik w scenariuszu**. </br>  W przypadku **Kanady** najniższy osiągnięty rating to B, **nie osiągnęła więc ratingu bankructwa - D**. </br>  W przypadku wielkiej Brytanii, Turcji i Filipin wystąpił scenariusz, w którym nastąpiło bankructwo. </br>  Co ciekawe **częściej rating D wystąpił dla Filipin** - ponad 90 razy, które miały wejściowy rating BBB, **niż w przypadku Turcji** - 15 razy, a jej  rating wejściowy to B. 
+
+```{r podsumowanie, echo=FALSE}
+vec_Kan<-c()
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="AAA"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="AA"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="A"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="BBB"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="BB"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="B"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="CCC"))
+vec_Kan<-c(vec_Kan, sum((mc$Kanada)=="D"))
+
+
+vec_UK<-c()
+vec_UK<-c(vec_UK, sum((mc$UK)=="AAA"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="AA"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="A"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="BBB"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="BB"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="B"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="CCC"))
+vec_UK<-c(vec_UK, sum((mc$UK)=="D"))
+
+vec_Tur<-c()
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="AAA"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="AA"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="A"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="BBB"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="BB"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="B"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="CCC"))
+vec_Tur<-c(vec_Tur, sum((mc$Turcja)=="D"))
+
+vec_Fil<-c()
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="AAA"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="AA"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="A"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="BBB"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="BB"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="B"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="CCC"))
+vec_Fil<-c(vec_Fil, sum((mc$Filipiny)=="D"))
+
+wyniki<-data.frame("Kanada"=vec_Kan, "UK"=vec_UK, "Filipiny"= vec_Fil, "Turcja"=vec_Tur)
+rownames(wyniki)<-c("AAA", "AA", "A", "BBB", "BB", "B", "CCC", "D")
+wyniki %>%
+    kable(caption = 'Results') %>%
+    kable_styling(bootstrap_options = c('striped', 'condensed')) 
+```
+</br> 
+</br> 
+</br> 
+
+## Obliczanie wartości portfela
+W obligacje 3-letnie z każdego z tych państw zainwestowano po **1 000 000 USD**. </br>Do obliczenia wartości portfela dla każdego z wygenerowanych scenariuszy używam napisanej funkcji, która oblicza wartość obligacji po pierwszym roku na podstawie przeciętnych stóp zwrotu z obligacji o podanym ratingu. </br>W przypadku wystąpienia ratingu D - bankructwa wartość obligacji dla danego państwa obliczamy przy pomocy ustalonej wcześniej stopy zwrotu równej 51,89%. 
+```{r funkcja}
+#przecietne stopy zwrotu z obligacji
+library(dplyr)
+library(kableExtra)
+aaa<-0.0427
+aa<-0.0432
+a<-0.0442
+bbb<-0.0457
+bb<-0.0612
+b<-0.0711
+ccc<-0.1452
+d<-0.5189
+
+stopy<-function(mcPanstwo, kwota){
+  for (i in 1:length(mcPanstwo)){
+    if(mcPanstwo[i]=="AAA"){
+      mcPanstwo[i]=kwota/(1+aaa)^2
+    }
+    if(mcPanstwo[i]=="AA"){
+      mcPanstwo[i]=kwota/(1+aa)^2
+    }
+    if(mcPanstwo[i]=="A"){
+      mcPanstwo[i]=kwota/(1+a)^2
+    }
+    if(mcPanstwo[i]=="BBB"){
+      mcPanstwo[i]=kwota/(1+bbb)^2
+    }
+    if(mcPanstwo[i]=="BB"){
+      mcPanstwo[i]=kwota/(1+bb)^2
+    }
+    if(mcPanstwo[i]=="B"){
+      mcPanstwo[i]=kwota/(1+b)^2
+    }
+    if(mcPanstwo[i]=="CCC"){
+      mcPanstwo[i]=kwota/(1+ccc)^2
+    }
+    if(mcPanstwo[i]=="D"){
+      mcPanstwo[i]=kwota*d
+    }
+  }
+  return(mcPanstwo)
+}
+
+mc2<-mc
+mc2$Kanada<-as.double(stopy(mc2$Kanada, 1000000))
+mc2$UK<-as.double(stopy(mc2$UK, 1000000))
+mc2$Turcja<-as.double(stopy(mc2$Turcja, 1000000))
+mc2$Filipiny<-as.double(stopy(mc2$Filipiny, 1000000))
+
+mc2[1:2000,] %>%
+    kable(caption = 'Scenarios') %>%
+    kable_styling(bootstrap_options = c('striped', 'condensed')) %>%
+    scroll_box(height = "200px")
+```
+</br> 
+</br> 
+
+### Obliczanie sumy portfela i strat
+Następnie obliczam **wartość portfela**, czyli sumę wartości obligacji dla każdego ze scenariuszy oraz **straty**, czyli różnicę między wartością portfela, gdyby ratingi obligacji po roku nie uległy zmianie, a wartościami uzyskanymi w każdym ze scenariuszy.
+</br> 
+
+```{r strata, echo=FALSE}
+mc2$wartosc<-apply(mc2,1,sum)
+
+suma=1000000/(1+aaa)^2 + 1000000/(1+aa)^2 + 1000000/(1+bbb)^2 + 1000000/(1+b)^2
+
+for(i in 1:nrow(mc2)){
+  if(mc2$wartosc[i]<3624817){
+    mc2$strata[i]=3624817-mc2$wartosc[i]
+  }
+  else{
+    mc2$strata[i]=NA
+  }
+
+}
+mc[1:2000,] %>%
+    kable(caption = 'Scenarios') %>%
+    kable_styling(bootstrap_options = c('striped', 'condensed')) %>%
+    scroll_box( height = "200px")
+```
+</br> 
+</br> 
+
+### Obliczanie VaR
+Wyznaczone wartości strat zebrano do wektora, posortowano i obliczono **99.9% VaR**. </br> 
+Obliczony przez nas VaR wynosi **504 754.4 USD**.
+```{r VaR}
+VaR<-NULL
+VaR<-na.omit(mc2$strata)
+
+VaR<-as.vector(VaR)
+VaR<-sort(VaR)
+
+# Kilka pierwszych wartości strat
+head(VaR, 14)
+
+# Wartość VaR
+quantile(VaR, 0.999)
+```
+</br> 
+</br> 
+
+
+## Podsumowanie
+
+W wygenerowanych scenariuszach **w przeważającej większości scenariuszy** dla każdego z państw pojawiły się **ratingi identyczne z wejściowymi**. W przypadku tylko jednego państwa - **Kanady nie wystąpił scenariusz, w którym występowało bankructwo**. </br>W innych państwach taki rating wystąpił, co ciekawe częściej wystąpił dla Filipin - rating wejściowy BBB niż dla Turcji - rating wejściowy B. </br>Obliczona dla naszego portfela obligacji **wartość VaR wynosiła 504 754.4 USD**. </br>Należy pamiętać o przyjętych w tym projekcie przybliżeniach między innymi korzystaliśmy z macierzy przejścia dla obligacji korporacyjnych, a nie rządowych, stopy procentowe również nie były aktualne. Przybliżenia te mogły mieć wpływ na otrzymane wyniki, więc nie należy wyciągać wniosków znajdujących realne odniesienie w rzeczywistości. 
+
+</br> 
+</br> 
+
+
+### Bibliografia
+Wykłady **Ilościowe aspekty ryzyka** dr Jacka Wolaka </br> 
+https://pl.investing.com </br> 
+https://tradingeconomics.com </br> 
+http://www.kzm.pwsztar.edu.pl/~kzm_matematyka/szkola/referaty/Szwedo.pdf </br> 
+https://biznes.interia.pl/makroekonomia/news/nowe-tygrysy-rosna-w-sile,2604551 </br> 
+https://pl.wikipedia.org/wiki/Wikipedia:Strona_główna
+
+</br> 
+</br> 
+</br> 
+</br> 
+</br> 
+</br> 

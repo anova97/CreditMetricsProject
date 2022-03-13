@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1556115005440.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "959707009",
+    "id" : "9F6E3108",
+    "lastKnownWriteTime" : 1556968712,
+    "last_content_update" : 1647158482960,
+    "path" : "~/Desktop/projekt2/projekt2skrypt.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "6,6",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

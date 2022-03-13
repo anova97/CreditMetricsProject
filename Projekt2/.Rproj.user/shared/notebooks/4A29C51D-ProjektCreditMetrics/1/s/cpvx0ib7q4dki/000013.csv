@@ -1,0 +1,7 @@
+"0","set.seed(100)"
+"0","mc<-rmvnorm(50000, sigma=korelacje)"
+"0","mc<-as.data.frame(mc)"
+"0","mc[1:1000,] %>%"
+"0","    kable(caption = 'Scenarios') %>%"
+"0","    kable_styling(bootstrap_options = c('striped', 'condensed')) %>%"
+"0","    scroll_box(width = ""500px"", height = ""200px"")"

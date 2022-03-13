@@ -1,0 +1,4 @@
+"0","set.seed(100)"
+"0","mc<-rmvnorm(50000, sigma=korelacje)"
+"0","mc<-as.data.frame(mc)"
+"0","kable(head(mc))"
